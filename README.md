@@ -24,7 +24,8 @@ Vérification de la résolution de noms de domaine :
 ## 3. Analyse de flux et observation des paquets
 Une capture de trafic a été réalisée avec l'analyseur Wireshark pour décomposer les échanges de données.
 
-![Analyse Wireshark](image_007e34.png)
+![Analyse Wireshark](<img width="1186" height="713" alt="Capture d&#39;écran 2026-04-30 120842" src="https://github.com/user-attachments/assets/5b761448-f347-4f92-80f2-0e59f0b961bc" />
+)
 
 ### 3.1. Analyse du protocole ARP
 Comme illustré sur les lignes 11 et 12 de la capture `image_007e34.png`, on observe des requêtes ARP (Address Resolution Protocol). Ma machine interroge le réseau pour identifier l'adresse MAC associée à la passerelle par défaut (`10.0.2.2`) avant d'encapsuler les paquets IP.
