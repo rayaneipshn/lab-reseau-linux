@@ -35,5 +35,21 @@ Les lignes 1 à 10 montrent les séquences Echo Request et Echo Reply. L'analyse
 * **Checksum :** Validation de l'intégrité de l'en-tête IP.
 * **Longueur :** Paquets standard de 98 octets.
 
-## 4. Conclusion technique
-La machine est correctement intégrée dans son segment réseau. La communication est fluide, la résolution de noms est opérationnelle et les échanges de bas niveau (ARP) confirment la bonne interaction avec la passerelle virtuelle.
+## 4. Sécurisation de l'hôte (Hardening)
+Suite à l'analyse des flux, une politique de sécurité "Default Deny" a été appliquée sur la machine afin de limiter la surface d'attaque et de contrôler les points d'entrée.
+
+### 4.1. Configuration du pare-feu UFW
+L'outil `ufw` (Uncomplicated Firewall) a été configuré pour appliquer un filtrage strict des paquets. 
+
+**État de la configuration :**
+* **Flux entrants :** Bloqués par défaut (`deny incoming`), à l'exception du port `22/tcp` (SSH) pour permettre l'administration à distance.
+* **Flux sortants :** Autorisés (`allow outgoing`) pour assurer les mises à jour et la résolution DNS.
+* **Journalisation :** Activée en mode `low` pour conserver une trace des événements réseau.
+
+![Statut du Pare-feu](image_000cc1.png)
+
+### 4.2. Analyse de la posture de sécurité
+La présence de la règle `22/tcp ALLOW IN` combinée au `Default: deny (incoming)` démontre une approche de sécurisation par "liste blanche". Seul le service nécessaire au management est exposé, réduisant drastiquement les risques d'intrusion via des ports non supervisés.
+
+## 5. Conclusion technique
+La machine est correctement intégrée dans son segment réseau. La communication est fluide, la résolution de noms est opérationnelle et les échanges de bas niveau (ARP) confirment la bonne interaction avec la passerelle virtuelle. L'application des règles de filtrage UFW assure désormais une protection active de l'hôte contre les accès non autorisés.
